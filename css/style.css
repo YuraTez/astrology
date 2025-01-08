@@ -1260,9 +1260,13 @@ input[type="radio"]{
   margin-top: 20px;
 }
 
+.tab-download{
+  margin-top: 32px;
+}
 
-
-
+.last-tab{
+  margin-top: 32px;
+}
 
 
 
