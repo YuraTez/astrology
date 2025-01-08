@@ -304,7 +304,7 @@ $(".popup-cross, #errorBtn").on("click", function (){
 
 $(".price-list").on("click" , function (){
     let selected = $("input[name='price']:checked").next().text()
-    $(".price-selected").text(selected);
+    $(".preview-pay__total-sum").text(selected);
     $(".price-total-sale").text(selected);
 })
 
@@ -385,6 +385,7 @@ function loadActiveTab() {
 }
 
 // Пример использования
+/*
 window.addEventListener('DOMContentLoaded', () => {
     loadActiveTab();
-});
+});*/
