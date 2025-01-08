@@ -14,12 +14,6 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-/*input[type="radio"],
-input[type="checkbox"],
-input[type="file"]{
-  display: none;
-}*/
-
 textarea{
   resize: none;
 }
@@ -442,6 +436,9 @@ input:not(:placeholder-shown) + label {
   font-size: 12px;
 }
 
+input:not(:placeholder-shown){
+  padding: 8px 12px 0;
+}
 
 .custom-input__label span{
   font-weight: 400;

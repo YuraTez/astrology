@@ -20,11 +20,49 @@ new AirDatepicker('#datepicker' , {
         if (data.val()){
            $(".change-data").show();
            $(".zodiac-img").attr("src" , "assets/img/zodiac/" + getZodiacSign(data.val()) + ".png")
+            localStorage.setItem('img', "assets/img/zodiac/" + getZodiacSign(data.val()) + ".png");
         }else{
             $(".change-data").hide()
         }
     }
 });
+
+function validateDate(dateString) {
+    // Регулярное выражение для проверки формата mm/dd/yyyy
+    const datePattern = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
+
+    // Проверка соответствия строки формату
+    if (!datePattern.test(dateString)) {
+        return false;
+    }
+
+    // Разделение строки на части для проверки существования даты
+    const [month, day, year] = dateString.split('/').map(Number);
+
+    // Проверка на существование даты
+    const date = new Date(year, month - 1, day);
+    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+        return false;
+    }
+
+    // Проверка, что дата не больше текущей даты
+    const currentDate = new Date();
+    if (date > currentDate) {
+        return false;
+    }
+
+    return true;
+}
+
+$("#datepicker").on("input" , function (){
+    if(validateDate($(this).val())){
+        $(".change-data").show();
+        $(".zodiac-img").attr("src" , "assets/img/zodiac/" + getZodiacSign($(this).val()) + ".png")
+        localStorage.setItem('img', "assets/img/zodiac/" + getZodiacSign($(this).val()) + ".png");
+    }else {
+        $(".change-data").hide()
+    }
+})
 
 const zodiacSigns = [
     { name: "Capricorn", startDate: "12-22", endDate: "01-19" },
@@ -72,17 +110,20 @@ function bgProgressBar(num = bgProgressBar($(".tab.active").attr("data-tab"))){
 
 
 $(".tab-next").on("click" , function (){
+    let activeTab = document.querySelector(".tab.active")
     if($(this).has(".change-data").length){
        if($("#datepicker").val()){
            $(this).closest(".tab").removeClass("active");
            $(this).closest(".tab").next().addClass("active");
            bgProgressBar()
+           saveActiveTab(activeTab.getAttribute("data-tab"))
        }
     }else{
         $(this).closest(".tab").removeClass("active");
         $(this).closest(".tab").next().addClass("active");
         bgProgressBar()
         $(".back-slide").removeClass("hide")
+        saveActiveTab(activeTab.getAttribute("data-tab"))
     }
 
 })
@@ -261,89 +302,6 @@ $(".popup-cross, #errorBtn").on("click", function (){
 })
 
 
-
-
-// отресовка линий
-/*
-$(function() {
-
-     const imageUrl = "./assets/img/hand.jpg"; // Укажите путь к вашей фотографии
-     const coordinatesUrl = "./js/lines_coordinates.json"; // Укажите путь к JSON-файлу
-
-     const canvas = document.getElementById('canvas');
-     const ctx = canvas.getContext('2d');
-
-     const colors = ["red", "blue", "green", "orange", "purple", "cyan"]; // Цвета линий
-
-     // Load image
-     const image = new Image();
-     image.src = imageUrl;
-     image.onload = () => {
-         // Resize canvas to match image dimensions
-         canvas.width = image.width;
-         canvas.height = image.height;
-
-         // Draw image on canvas
-         ctx.drawImage(image, 0, 0);
-
-         // Fetch line coordinates and draw them
-         fetch(coordinatesUrl)
-             .then(response => response.json())
-             .then(lines => {
-                 drawLinesSequentially(lines);
-             })
-             .catch(error => console.error("Error loading coordinates:", error));
-     };
-
-     // Function to draw lines one by one with smooth animation
-     async function drawLinesSequentially(lines) {
-         for (let i = 0; i < lines.length; i++) {
-             const line = lines[i];
-             const color = colors[i % colors.length]; // Cycle through colors
-             await drawLineSmoothly(line, color, 4000); // Draw each line with a 2-second duration
-         }
-     }
-
-     // Function to draw a single line smoothly
-     function drawLineSmoothly(line, color, duration) {
-         return new Promise((resolve) => {
-             let currentIndex = 0;
-             const totalPoints = line.length;
-             const interval = duration / totalPoints;
-
-             ctx.strokeStyle = color; // Set line color
-             ctx.lineWidth = 2; // Set line thickness
-             ctx.lineJoin = "round"; // Smooth joins between points
-             ctx.lineCap = "round"; // Smooth ends of lines
-             ctx.beginPath();
-
-             const drawStep = () => {
-                 if (currentIndex < totalPoints - 1) {
-                     const [x1, y1] = line[currentIndex];
-                     const [x2, y2] = line[currentIndex + 1];
-
-                     if (currentIndex === 0) {
-                         ctx.moveTo(x1, y1); // Move to the start of the line
-                     }
-
-                     ctx.lineTo(x2, y2); // Draw to the next point
-                     ctx.stroke(); // Render the current segment
-                     currentIndex++;
-
-                     setTimeout(drawStep, interval); // Delay for smooth animation
-                 } else {
-                     resolve(); // Finish drawing the line
-                 }
-             };
-
-             drawStep(); // Start drawing
-         });
-     }
-})
-*/
-
-
-
 $(".price-list").on("click" , function (){
     let selected = $("input[name='price']:checked").next().text()
     $(".price-selected").text(selected);
@@ -395,3 +353,38 @@ $(".form-email").on("submit" , function (){
     $(".popup-block , .email-slide").removeClass("active");
     $(".tab-15").addClass("active");
 })
+
+function saveActiveTab(tabData) {
+    localStorage.setItem('activeTab', tabData);
+}
+
+function loadActiveTab() {
+    const activeTab = localStorage.getItem('activeTab');
+    const imgUrl = localStorage.getItem('img');
+
+    $(".zodiac-img").attr("src" , imgUrl)
+
+    if (activeTab) {
+        // Отображение соответствующего таба
+        document.querySelectorAll('[data-tab]').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        const tabToActivate = document.querySelector(`[data-tab="${activeTab}"]`);
+        if (tabToActivate) {
+            tabToActivate.classList.add('active');
+            if(Number(activeTab)){
+                bgProgressBar(num = activeTab )
+            }else{
+                bgProgressBar(num = 10 )
+            }
+
+        }
+    }else{
+        document.querySelector(`[data-tab="0"]`).classList.add('active');
+    }
+}
+
+// Пример использования
+window.addEventListener('DOMContentLoaded', () => {
+    loadActiveTab();
+});
