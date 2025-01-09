@@ -642,53 +642,77 @@ input:not(:placeholder-shown){
   transform: translate(-50% , -50%);
 }
 
-
-.hand{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50% , -50%);
-  width: 350px;
-  height: 350px;
+.hand-lane{
+  display: flex;
+  align-items: center;
 }
 
-.hand-elem{
+.hand,
+.line{
+  position: relative;
+  width: 153px;
+  height: 153px;
+}
+
+.line{
+  width: 206px;
+  height: 192px;
+}
+
+.hand-elem,
+.line-elem{
   position: absolute;
   left: 0;
   top: 0;
   transition: 4s;
   overflow: hidden;
-  width: 350px;
-  height: 350px;
+  width: 153px;
+  height: 153px;
+}
+
+.line-elem{
+  width: 206px;
+  height: 192px;
 }
 
 .hand__img{
-  width: 350px;
-  height: 350px;
+  width: 153px;
+  height: 153px;
 }
 
-.hand-elem img{
+.line__img{
+  width: 206px;
+  height: 192px;
+}
+
+.hand-elem img,
+.line-elem img{
   display: block;
 }
 
-.hand-1{
+.hand-1,
+.line-1{
   height: 0;
   transition: 4s;
 }
 
-.hand-2{
+.hand-2,
+.line-2{
   height: 0;
 }
 
-.hand-3{
+.hand-3,
+.line-3{
   height: 0;
 }
 
-.hand-4{
+.hand-4,
+.line-4{
   height: 0;
 }
 
-.hand-elem.active{
+.hand-elem.active,
+.line-elem.active{
   height: 100%;
   width: 100%;
 }

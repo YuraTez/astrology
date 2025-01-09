@@ -99,7 +99,10 @@ function postData(){
             const  formPay = PaymentFormSdk.init(initData);
 
             formPay.on('success', e => {
-                console.log('e.data')
+               setTimeout(function (){
+                   $(".pay").removeClass("active");
+                   $(".last-tab").addClass("active")
+               },1000)
             })
         })
         .catch((error) => {

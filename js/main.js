@@ -159,27 +159,34 @@ $("#popupEmail").on("input", function (){
 })
 
 const HandLineList = document.querySelectorAll(".hand-elem");
+const LineList = document.querySelectorAll(".line-elem");
 
-function showImg(){
-    HandLineList.forEach((el, i) => {
+function handView(imgList){
+    imgList.forEach((el, i) => {
         let time = i + "000"
         setTimeout(() => {
             el.classList.add("active");
         }, time)
     })
+}
+
+function showImg() {
     setTimeout(() => {
         $(".popup-block").removeClass("active");
         $(".tab").removeClass("active");
         $(".preview-pal").addClass("active");
-    },5000)
+    }, 1500)
 
     setTimeout(() => {
         $(".tab").removeClass("active");
         $(".email-slide").addClass("active");
-        $(".popup-email").addClass("active");
-    },8000)
+        handView(HandLineList)
+        handView(LineList)
+        setTimeout(function () {
+            $(".popup-email").addClass("active");
+        }, 7000)
+    }, 3000)
 }
-
 
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
@@ -280,7 +287,6 @@ async function sendImage(file , img) {
     const data = await response.json();
     if(data.predictions.length){
         $(".popup-block").removeClass("active");
-        $(".hande-block").addClass("active");
         showImg()
     }else {
        $(".popup-error").addClass("active");
@@ -300,7 +306,6 @@ document.getElementById("fileInput").addEventListener("change", (event) => {
 $(".popup-cross, #errorBtn").on("click", function (){
     $(".popup-block").removeClass("active");
 })
-
 
 $(".price-list").on("click" , function (){
     let selected = $("input[name='price']:checked").next().text()
@@ -385,7 +390,6 @@ function loadActiveTab() {
 }
 
 // Пример использования
-/*
 window.addEventListener('DOMContentLoaded', () => {
     loadActiveTab();
-});*/
+});
