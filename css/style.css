@@ -436,7 +436,7 @@ input:not(:placeholder-shown) + label {
   font-size: 12px;
 }
 
-input:not(:placeholder-shown){
+input[type="email"]:not(:placeholder-shown){
   padding: 8px 12px 0;
 }
 
@@ -616,6 +616,7 @@ input:not(:placeholder-shown){
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(-1, 1);
 }
 
 #canvas{
@@ -671,6 +672,10 @@ input:not(:placeholder-shown){
 }
 
 .line-elem{
+  transition: 3s;
+}
+
+.line-elem{
   width: 206px;
   height: 192px;
 }
@@ -690,25 +695,36 @@ input:not(:placeholder-shown){
   display: block;
 }
 
-.hand-1,
-.line-1{
+.hand-1{
   height: 0;
   transition: 4s;
 }
 
-.hand-2,
+.line-1{
+ width: 0;
+}
+
+.hand-2{
+  height: 0;
+}
+
 .line-2{
+  width: 0;
+}
+
+.hand-3{
   height: 0;
 }
 
-.hand-3,
 .line-3{
-  height: 0;
+  width: 0;
 }
 
-.hand-4,
-.line-4{
+.hand-4{
   height: 0;
+}
+.line-4{
+  width: 0;
 }
 
 .hand-elem.active,

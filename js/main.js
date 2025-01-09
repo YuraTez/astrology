@@ -54,8 +54,41 @@ function validateDate(dateString) {
     return true;
 }
 
+const element = document.getElementById('datepicker');
+const momentFormat = 'MM/DD/YYYY';
+const maskOptions = {
+    mask: Date,
+    pattern: momentFormat,
+    min: new Date( 0, 1, 1920),
+    max: new Date(),
+    lazy: false,
+    format: date => moment(date).format(momentFormat),
+    parse: str => moment(str, momentFormat),
+
+    blocks: {
+        YYYY: {
+            mask: IMask.MaskedRange,
+            from: 1920,
+            to: 2030
+        },
+        MM: {
+            mask: IMask.MaskedRange,
+            from: 1,
+            to: 12
+        },
+        DD: {
+            mask: IMask.MaskedRange,
+            from: 1,
+            to: 31
+        }
+    }
+};
+const mask = IMask(element, maskOptions);
+
+
 $("#datepicker").on("input" , function (){
-    if(validateDate($(this).val())){
+    if(validateDate($(this).val().replace(/_/g, ''))){
+        $(this).val($(this).val().replace(/_/g, ''))
         $(".change-data").show();
         $(".zodiac-img").attr("src" , "assets/img/zodiac/" + getZodiacSign($(this).val()) + ".png")
         localStorage.setItem('img', "assets/img/zodiac/" + getZodiacSign($(this).val()) + ".png");
@@ -96,6 +129,8 @@ function getZodiacSign(date) {
             }
         } else if (inputDate >= start && inputDate <= end) {
             return sign.name;
+        }else {
+            return "Capricorn"
         }
     }
     return null;
@@ -184,7 +219,7 @@ function showImg() {
         handView(LineList)
         setTimeout(function () {
             $(".popup-email").addClass("active");
-        }, 7000)
+        }, 5000)
     }, 3000)
 }
 
@@ -376,6 +411,11 @@ function loadActiveTab() {
         });
         const tabToActivate = document.querySelector(`[data-tab="${activeTab}"]`);
         if (tabToActivate) {
+            if(activeTab === "add-email"){
+                document.querySelector(`[data-tab="add-photo"]`).classList.add("active");
+                return
+            }
+
             tabToActivate.classList.add('active');
             if(Number(activeTab)){
                 bgProgressBar(num = activeTab )
