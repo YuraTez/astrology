@@ -24,13 +24,24 @@ function generateUUID() {
     });
 }
 
+// Функция для генерации customer_account_id  нужно заменить потом на тот который будет с базы
+function generateRandomString(length) {
+    const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters[randomIndex];
+    }
+    return result;
+}
+
 function postData(){
 console.log($("input[name='price']:checked").val())
     const data = {
         "order_id": generateUUIDString(),
         "product_id" : $("input[name='price']:checked").val(),
         "order_description": "Premium package",
-        "customer_account_id" : "4dad42f879",
+        "customer_account_id" : generateRandomString(10),
         "product_price_id": "625915e8-9830-45b8-b75e-5953fd589c9e",
         "customer_email": "test@solidgate.com",
     };

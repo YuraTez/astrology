@@ -362,8 +362,6 @@ function loadActiveTab() {
 }
 
 // Пример использования
-/*
 window.addEventListener('DOMContentLoaded', () => {
     loadActiveTab();
 });
-*/
