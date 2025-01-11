@@ -25,12 +25,12 @@ function generateUUID() {
 }
 
 function postData(){
-
+console.log($("input[name='price']:checked").val())
     const data = {
         "order_id": generateUUIDString(),
         "product_id" : $("input[name='price']:checked").val(),
         "order_description": "Premium package",
-        "customer_account_id" : "4dad42f878",
+        "customer_account_id" : "4dad42f879",
         "product_price_id": "625915e8-9830-45b8-b75e-5953fd589c9e",
         "customer_email": "test@solidgate.com",
     };

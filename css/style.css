@@ -195,11 +195,18 @@ body{
 }
 
 .data-person{
+  position: relative;
   max-width: 400px;
   margin: 24px auto;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   background: #f4f4f5;
   border-radius: 8px;
+}
+
+.datepicker-btn{
+  position: absolute;
+  top: 28px;
+  right: 12px;
 }
 
 .data-person__label{
@@ -218,7 +225,7 @@ body{
   line-height: 129%;
   color: #71717a;
   cursor: pointer;
-  background: #f4f4f5 url("../assets/img/calendar.svg") no-repeat 95% 33% ;
+  background: #f4f4f5;
 }
 
 .tab-4{

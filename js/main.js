@@ -11,21 +11,24 @@ const locale = {
     firstDay: 0
 }
 
-new AirDatepicker('#datepicker' , {
+const datepicker = new AirDatepicker('#datepicker', {
     autoClose: true,
-    position : "bottom right",
+    position: "bottom right",
     locale: locale,
+    visible: false,
+
     onSelect: function(fd, d) {
-        let data = $("#datepicker")
-        if (data.val()){
-           $(".change-data").show();
-           $(".zodiac-img").attr("src" , "assets/img/zodiac/" + getZodiacSign(data.val()) + ".png")
+        let data = $("#datepicker");
+        if (data.val()) {
+            $(".change-data").show();
+            $(".zodiac-img").attr("src", "assets/img/zodiac/" + getZodiacSign(data.val()) + ".png");
             localStorage.setItem('img', "assets/img/zodiac/" + getZodiacSign(data.val()) + ".png");
-        }else{
-            $(".change-data").hide()
+        } else {
+            $(".change-data").hide();
         }
     }
 });
+
 
 function validateDate(dateString) {
     // Регулярное выражение для проверки формата mm/dd/yyyy
@@ -430,6 +433,8 @@ function loadActiveTab() {
 }
 
 // Пример использования
+/*
 window.addEventListener('DOMContentLoaded', () => {
     loadActiveTab();
 });
+*/
