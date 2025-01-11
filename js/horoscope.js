@@ -14,14 +14,14 @@ const data = {
     language: "en",        // Язык
     timezone: 5.5,         // Часовой пояс
     place: "Mumbai,Maharashtra India", // Место рождения
-    footer_link: "astrologyapi.com", // Ссылка на ваш домен
-    logo_url: "https://example.com/logo.png", // URL логотипа вашей компании
-    company_name: "Vedic Rishi Astro Solutions Pvt. Ltd.", // Название вашей компании
-    company_info: "Your Company Info", // Информация о компании (менее 500 символов)
-    domain_url: "https://www.astrologyapi.com", // Полный URL вашего домена
-    company_email: "mail@astrologyapi.com", // Email вашей компании
-    company_landline: "+91-22123222", // Номер стационарного телефона вашей компании
-    company_mobile: "+91 1212 1212 12" // Номер мобильного телефона вашей компании
+    footer_link: "https://yuratez.github.io", // Ссылка на ваш домен
+    logo_url: "https://yuratez.github.io/astrology/logo.png", // URL логотипа вашей компании
+    company_name: "test", // Название вашей компании
+    company_info: "test", // Информация о компании (менее 500 символов)
+    domain_url: "https://yuratez.github.io/astrology", // Полный URL вашего домена
+    company_email: "test@mail.ru", // Email вашей компании
+    company_landline: "+375293321611", // Номер стационарного телефона вашей компании
+    company_mobile: "+375293321611" // Номер мобильного телефона вашей компании
 };
 
 // Кодируем в Base64
