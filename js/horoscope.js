@@ -27,7 +27,7 @@ const data = {
 // Кодируем в Base64
 const auth = "Basic " + btoa(userId + ":" + apiKey);
 
-fetch(`https://json.astrologyapi.com/v1/${api}`, {
+fetch(`https://pdf.astrologyapi.com/v1/${api}`, {
     method: 'POST',
     headers: {
         "Authorization": auth,
