@@ -1,4 +1,4 @@
-const api = 'natal_horoscope_report/tropical';
+const api = 'mini_horscope_pdf';
 const userId = '636604';
 const apiKey = '6d1f718875721102efe8c925f918ac863343f6b0';
 const language = 'en';
