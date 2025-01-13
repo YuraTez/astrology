@@ -1,25 +1,25 @@
 const api = 'mini_horscope_pdf';
-const userId = '636604';
-const apiKey = '6d1f718875721102efe8c925f918ac863343f6b0';
+const userId = '4545';
+const apiKey = 'ByVOIaODH57QRVi6CqswHXGlcpDvj7tZBRoorY';
 const language = 'en';
 const data = {
     name: "Ajeet Kanojia", // Имя пользователя
     day: 6,                // День рождения
     month: 1,              // Месяц рождения
-    year: 2000,            // Год рождения
+    year: 1992,            // Год рождения
     hour: 7,               // Час рождения
     minute: 45,            // Минуты рождения
     latitude: 19.2056,     // Широта места рождения
     longitude: 25.2056,    // Долгота места рождения
     language: "en",        // Язык
-    timezone: 5.5,         // Часовой пояс
-    place: "Mumbai,Maharashtra India", // Место рождения
+    timezone: 3.5,         // Часовой пояс
+    place: "USA", // Место рождения
     footer_link: "https://yuratez.github.io", // Ссылка на ваш домен
-    logo_url: "https://yuratez.github.io/astrology/logo.png", // URL логотипа вашей компании
-    company_name: "test", // Название вашей компании
-    company_info: "test", // Информация о компании (менее 500 символов)
+    logo_url: "https://yuratez.github.io/astrology/assets/img/logo.svg", // URL логотипа вашей компании
+    company_name: "4partners", // Название вашей компании
+    company_info: "4partners", // Информация о компании (менее 500 символов)
     domain_url: "https://yuratez.github.io/astrology", // Полный URL вашего домена
-    company_email: "test@mail.ru", // Email вашей компании
+    company_email: "4partners@gmail.com", // Email вашей компании
     company_landline: "+375293321611", // Номер стационарного телефона вашей компании
     company_mobile: "+375293321611" // Номер мобильного телефона вашей компании
 };
