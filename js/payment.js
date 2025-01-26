@@ -36,7 +36,6 @@ function generateRandomString(length) {
 }
 
 function postData(){
-
     const data = {
         "order_id": generateUUIDString(),
         "product_id" : $("input[name='price']:checked").val(),
@@ -111,6 +110,7 @@ function postData(){
 
             formPay.on('success', e => {
                setTimeout(function (){
+                   getHoroscope ()
                    $(".pay").removeClass("active");
                    $(".last-tab").addClass("active")
                },1000)

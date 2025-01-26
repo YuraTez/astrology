@@ -23,6 +23,7 @@ const datepicker = new AirDatepicker('#datepicker', {
             $(".change-data").show();
             $(".zodiac-img").attr("src", "assets/img/zodiac/" + getZodiacSign(data.val()) + ".png");
             localStorage.setItem('img', "assets/img/zodiac/" + getZodiacSign(data.val()) + ".png");
+            localStorage.setItem('dataBirth' , data.val())
         } else {
             $(".change-data").hide();
         }
@@ -45,28 +46,35 @@ const zodiacSigns = [
 ];
 
 function getZodiacSign(date) {
-    const inputDate = new Date(date);
-    const year = inputDate.getFullYear();
+    // Преобразуем строку даты в массив [mm, dd, yyyy]
+    const [month, day, year] = date.split('/').map(Number);
+    const inputDate = new Date(year, month - 1, day); // month - 1, так как месяцы начинаются с 0
 
     for (const sign of zodiacSigns) {
-        const start = new Date(`${year}-${sign.startDate}`);
-        const end = new Date(`${year}-${sign.endDate}`);
+        const [startMonth, startDay] = sign.startDate.split('-').map(Number);
+        const [endMonth, endDay] = sign.endDate.split('-').map(Number);
 
-        if (sign.startDate > sign.endDate) {
+        const start = new Date(year, startMonth - 1, startDay);
+        const end = new Date(year, endMonth - 1, endDay);
+
+        // Проверяем, попадает ли дата в диапазон
+        if (startMonth > endMonth) {
+            // Если знак охватывает конец и начало года
             if (
-                (inputDate >= start && inputDate <= new Date(`${year}-12-31`)) ||
-                (inputDate >= new Date(`${year}-01-01`) && inputDate <= end)
+                (inputDate >= start && inputDate <= new Date(year, 11, 31)) || // до конца года
+                (inputDate >= new Date(year, 0, 1) && inputDate <= end) // с начала года
             ) {
                 return sign.name;
             }
         } else if (inputDate >= start && inputDate <= end) {
+            // Если дата попадает в обычный диапазон
             return sign.name;
-        } else {
-            return "Capricorn"
         }
     }
-    return null;
+
+    return null; // Если знак не найден
 }
+
 
 function bgProgressBar(num = bgProgressBar($(".tab.active").attr("data-tab"))) {
     if (num) {
@@ -337,11 +345,13 @@ $(".popup-name__btn").on("click", function () {
     event.preventDefault();
     $(".popup-block , .email-slide").removeClass("active");
     $(".tab-15").addClass("active");
+    localStorage.setItem("name" , $("#popupName").val())
 })
 
 $(".race__el").on("click", function (){
     $(".race__el").removeClass("active");
     $(this).addClass("active");
+    localStorage.setItem("race" , $(".race__el.active").text().trim())
 })
 
 
@@ -380,27 +390,6 @@ function loadActiveTab() {
     }
 }
 
-$.ajax({ url:"https://api.ipify.org/?format=json", success: function (data){
-    console.log(data)
-
-        const getYandexLocation = async (ip) => {
-            const response = await fetch(`https://api.yandex.com/geolocation?ip=${ip}`);
-            const data = await response.json();
-            return {
-                country: data.country,
-                city: data.city
-            };
-        };
-
-// Пример использования
-        getYandexLocation(data).then(location => {
-            console.log(`Страна: ${location.country}, Город: ${location.city}`);
-        });
-
-
-    }
-})
-
-/*window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
     loadActiveTab();
-});*/
+});

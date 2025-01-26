@@ -1,23 +1,59 @@
 const userId = '4545';
 const apiKey = 'ByVOIaODH57QRVi6CqswHXGlcpDvj7tZBRoorY';
 const language = 'en';
+let place;
+
+// Функция для получения местоположения
+async function getLocation() {
+    const response = await $.ajax({ url: "https://api.ipify.org/?format=json" });
+    const ip = response.ip;
+
+    // Функция получения адреса юзера
+    const getUserLocation = async (ip) => {
+        const response = await fetch(`http://ip-api.com/json/${ip}`);
+        const data = await response.json();
+        return {
+            country: data.country,
+            city: data.city
+        };
+    };
+
+    // Вызов функции получения адреса юзера
+    const location = await getUserLocation(ip);
+    return `${location.country}, ${location.city}`;
+}
+
+// Асинхронная функция для инициализации и получения данных
+async function init() {
+    place = await getLocation(); // Ожидаем разрешения промиса и присваиваем значение переменной
+
+}
+
+// Запускаем инициализацию
+init();
 
 
 function getHoroscope (){
+    let dataBirth = $("#datepicker").val() ? $("#datepicker").val() : localStorage.getItem('dataBirth')
+    let race = $(".race__el.active").text().trim() ? $(".race__el.active").text().trim() : localStorage.getItem('race')
+    let name = $("#popupName").val() ? $("#popupName").val() : localStorage.getItem("name")
+
+    console.log(dataBirth , race , name )
+
 
     const data = {
-        name: $("#popupName").val(), // Имя пользователя
-        gender: $(".race__el.active").text().trim(),
-        day: $("#datepicker").val().replace(/\//g, "").slice(2, 4),  // День рождения
-        month: $("#datepicker").val().replace(/\//g, "").slice(0, 2), // Месяц рождения
-        year: $("#datepicker").val().replace(/\//g, "").slice(4, 8),  // Год рождения
+        name: name, // Имя пользователя
+        gender: race,
+        day: dataBirth.replace(/\//g, "").slice(2, 4),  // День рождения
+        month: dataBirth.replace(/\//g, "").slice(0, 2), // Месяц рождения
+        year: dataBirth.replace(/\//g, "").slice(4, 8),  // Год рождения
         hour: 7,               // Час рождения
         minute: 45,            // Минуты рождения
-        latitude: 19.2056,     // Широта места рождения
-        longitude: 25.2056,    // Долгота места рождения
+        latitude: 51.5085,     // Широта места рождения
+        longitude: -0.12574,    // Долгота места рождения
         language: "en",        // Язык
         timezone: 3.5,         // Часовой пояс
-        place: "mink,belarus", // Место рождения
+        place: place, // Место рождения
         footer_link: "https://yuratez.github.io", // Ссылка на ваш домен
         logo_url: "https://yuratez.github.io/astrology/assets/img/logo.svg", // URL логотипа вашей компании
         company_name: "Palmreading App", // Название вашей компании
@@ -47,7 +83,8 @@ function getHoroscope (){
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            let url = data.pdf_url;
+            $(".tab-download").attr("href" , url)
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
