@@ -69,7 +69,7 @@
                 <div class="footer__text">For entertainment purposes only</div>
             </div>
         </div>
-        <div class="tab tab-2 mt-1 " data-tab="1">
+        <div class="tab tab-2 mt-1 active" data-tab="1">
             <div class="tab__title">
                 What's your gender?
             </div>
@@ -79,14 +79,12 @@
                 <div class="race__el tab-next">
                     <div class="race__el__i">
                         <img src="assets/img/male.svg" alt="">
-
                     </div>
                     Male
                 </div>
                 <div class="race__el tab-next">
                     <div class="race__el__i">
                         <img src="assets/img/female.svg" alt="">
-
                     </div>
                     Female
                 </div>
@@ -1103,7 +1101,7 @@ you are comfortable with.
 
     </div>
 
-    <div class="popup-block popup-email ">
+    <div class="popup-block popup-email">
         <div class="popup-email-content">
             <div class="popup-email__title">
                 Enter your email to get your
@@ -1124,7 +1122,37 @@ you are comfortable with.
 
                     We don't share any personal information.
                 </div>
-                <button type="submit" class="tab-btn popup-email__btn tab-next" disabled>Continue</button>
+                <button type="submit" class="tab-btn popup-email__btn" disabled>Continue</button>
+                <div class="text-form">
+                    By continuing, you agree to our <a href="#" target="_blank">EULA</a> and <a href="#"
+                                                                                                target="_blank">Privacy
+                    Notice</a>. Have a question? Reach our support team <a
+                        href="#" target="_blank">here</a>.
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="popup-block popup-name">
+        <div class="popup-email-content">
+            <div class="popup-email__title">
+                Enter your name for your palmistry reading
+            </div>
+            <form action="#" class="form-email">
+                <div class="form-group">
+                    <input type="text" class="custom-input" name="email" id="popupName" placeholder=" " required>
+                    <label for="popupEmail" class="custom-input__label">Your Name <span>*</span></label>
+                </div>
+                <div class="popup-email-personal">
+                    <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.16406 0.773852L8.45906 0.143148C8.36583 0.106689 8.26547 0.0878906 8.16406 0.0878906C8.06265 0.0878906 7.9623 0.106689 7.86906 0.143148L8.16406 0.773852ZM8.16406 17.227L7.79206 17.822C7.90536 17.8812 8.03358 17.9123 8.16406 17.9123C8.29454 17.9123 8.42276 17.8812 8.53606 17.822L8.16406 17.227ZM7.86806 0.144063L1.47606 2.64768L2.06406 3.90909L8.45806 1.40455L7.86806 0.144063ZM0.414062 4.11841V10.3889H1.91406V4.11841H0.414062ZM3.81506 15.7453L7.79206 17.822L8.53606 16.6319L4.55906 14.5543L3.81506 15.7453ZM8.53606 17.822L12.5131 15.7453L11.7691 14.5543L7.79206 16.6319L8.53606 17.822ZM15.9141 10.388V4.11932H14.4141V10.3898L15.9141 10.388ZM14.8541 2.64859L8.45906 0.144063L7.86906 1.40364L14.2631 3.90909L14.8541 2.64859ZM15.9141 4.11932C15.9141 3.47948 15.4971 2.90088 14.8541 2.64859L14.2631 3.90909C14.308 3.92679 14.3462 3.95614 14.373 3.99351C14.3999 4.03088 14.4141 4.07462 14.4141 4.11932H15.9141ZM12.5131 15.7453C13.5461 15.2057 14.4048 14.426 15.0021 13.4854C15.5993 12.5447 15.914 11.4765 15.9141 10.3889H14.4141C14.4139 11.2346 14.1691 12.0653 13.7046 12.7968C13.2401 13.5283 12.5724 14.1346 11.7691 14.5543L12.5131 15.7453ZM0.414062 10.3889C0.414169 11.4765 0.728793 12.5447 1.32605 13.4854C1.92331 14.426 2.78199 15.2057 3.81506 15.7453L4.55906 14.5543C3.75557 14.1345 3.08773 13.5281 2.62324 12.7964C2.15874 12.0648 1.91408 11.2339 1.91406 10.388L0.414062 10.3889ZM1.47406 2.64768C1.15947 2.77105 0.89137 2.97606 0.702961 3.23731C0.514552 3.49856 0.414107 3.8055 0.414062 4.11841H1.91406C1.91406 4.027 1.97406 3.94382 2.06606 3.90726L1.47406 2.64768Z"
+                              fill="#22C55E"/>
+                        <path d="M11.1641 7.17188L7.16406 10.8281L5.16406 9" stroke="#22C55E" stroke-width="1.37109"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+
+                    We don't share any personal information.
+                </div>
+                <button type="submit" class="tab-btn popup-name__btn" disabled>Continue</button>
                 <div class="text-form">
                     By continuing, you agree to our <a href="#" target="_blank">EULA</a> and <a href="#"
                                                                                                 target="_blank">Privacy
@@ -1239,8 +1267,8 @@ you are comfortable with.
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script src="https://cdn.solidgate.com/js/solid-form.js"></script>
 <script src="https://unpkg.com/imask"></script>
-<script src="js/payment.js"></script>
 <script src="js/horoscope.js"></script>
+<script src="js/payment.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

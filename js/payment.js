@@ -36,7 +36,7 @@ function generateRandomString(length) {
 }
 
 function postData(){
-console.log($("input[name='price']:checked").val())
+
     const data = {
         "order_id": generateUUIDString(),
         "product_id" : $("input[name='price']:checked").val(),

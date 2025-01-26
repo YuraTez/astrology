@@ -17,7 +17,7 @@ const datepicker = new AirDatepicker('#datepicker', {
     locale: locale,
     visible: false,
 
-    onSelect: function(fd, d) {
+    onSelect: function (fd, d) {
         let data = $("#datepicker");
         if (data.val()) {
             $(".change-data").show();
@@ -30,18 +30,18 @@ const datepicker = new AirDatepicker('#datepicker', {
 });
 
 const zodiacSigns = [
-    { name: "Capricorn", startDate: "12-22", endDate: "01-19" },
-    { name: "Aquarius", startDate: "01-20", endDate: "02-18" },
-    { name: "Pisces", startDate: "02-19", endDate: "03-20" },
-    { name: "Aries", startDate: "03-21", endDate: "04-19" },
-    { name: "Taurus", startDate: "04-20", endDate: "05-20" },
-    { name: "Gemini", startDate: "05-21", endDate: "06-20" },
-    { name: "Cancer", startDate: "06-21", endDate: "07-22" },
-    { name: "Leo", startDate: "07-23", endDate: "08-22" },
-    { name: "Virgo", startDate: "08-23", endDate: "09-22" },
-    { name: "Libra", startDate: "09-23", endDate: "10-22" },
-    { name: "Scorpio", startDate: "10-23", endDate: "11-21" },
-    { name: "Sagittarius", startDate: "11-22", endDate: "12-21" },
+    {name: "Capricorn", startDate: "12-22", endDate: "01-19"},
+    {name: "Aquarius", startDate: "01-20", endDate: "02-18"},
+    {name: "Pisces", startDate: "02-19", endDate: "03-20"},
+    {name: "Aries", startDate: "03-21", endDate: "04-19"},
+    {name: "Taurus", startDate: "04-20", endDate: "05-20"},
+    {name: "Gemini", startDate: "05-21", endDate: "06-20"},
+    {name: "Cancer", startDate: "06-21", endDate: "07-22"},
+    {name: "Leo", startDate: "07-23", endDate: "08-22"},
+    {name: "Virgo", startDate: "08-23", endDate: "09-22"},
+    {name: "Libra", startDate: "09-23", endDate: "10-22"},
+    {name: "Scorpio", startDate: "10-23", endDate: "11-21"},
+    {name: "Sagittarius", startDate: "11-22", endDate: "12-21"},
 ];
 
 function getZodiacSign(date) {
@@ -61,31 +61,31 @@ function getZodiacSign(date) {
             }
         } else if (inputDate >= start && inputDate <= end) {
             return sign.name;
-        }else {
+        } else {
             return "Capricorn"
         }
     }
     return null;
 }
 
-function bgProgressBar(num = bgProgressBar($(".tab.active").attr("data-tab"))){
-    if(num){
+function bgProgressBar(num = bgProgressBar($(".tab.active").attr("data-tab"))) {
+    if (num) {
         let calc = 100 / 10 * num;
-        $(".progress-bar__content").css("width" , `${calc}%`)
+        $(".progress-bar__content").css("width", `${calc}%`)
     }
 }
 
 
-$(".tab-next").on("click" , function (){
+$(".tab-next").on("click", function () {
     let activeTab = document.querySelector(".tab.active")
-    if($(this).has(".change-data").length){
-       if($("#datepicker").val()){
-           $(this).closest(".tab").removeClass("active");
-           $(this).closest(".tab").next().addClass("active");
-           bgProgressBar()
-           saveActiveTab(activeTab.getAttribute("data-tab"))
-       }
-    }else{
+    if ($(this).has(".change-data").length) {
+        if ($("#datepicker").val()) {
+            $(this).closest(".tab").removeClass("active");
+            $(this).closest(".tab").next().addClass("active");
+            bgProgressBar()
+            saveActiveTab(activeTab.getAttribute("data-tab"))
+        }
+    } else {
         $(this).closest(".tab").removeClass("active");
         $(this).closest(".tab").next().addClass("active");
         bgProgressBar()
@@ -96,39 +96,47 @@ $(".tab-next").on("click" , function (){
 })
 
 
-$(".back-slide").on("click" , function (){
+$(".back-slide").on("click", function () {
     let prevElem = $(".tab.active").prev();
 
-   if(prevElem.length){
-       $(".tab.active").removeClass("active");
-       prevElem.addClass("active");
-       bgProgressBar()
-   }
+    if (prevElem.length) {
+        $(".tab.active").removeClass("active");
+        prevElem.addClass("active");
+        bgProgressBar()
+    }
 
-   if(prevElem.hasClass("tab-1")){
-       $(".back-slide").addClass("hide")
-   }else {
-       $(".back-slide").removeClass("hide")
-   }
+    if (prevElem.hasClass("tab-1")) {
+        $(".back-slide").addClass("hide")
+    } else {
+        $(".back-slide").removeClass("hide")
+    }
 
 })
 
-$("#openPopUpPhoto").on("click" , function (){
+$("#openPopUpPhoto").on("click", function () {
     $(".popup-take-photo").addClass("active");
 })
 
-$("#popupEmail").on("input", function (){
-    if($(this).val()){
-        $(".popup-email__btn").removeAttr("disabled" , "false")
-    }else{
-        $(".popup-email__btn").attr("disabled" , "true")
+$("#popupEmail").on("input", function () {
+    if ($(this).val()) {
+        $(".popup-email__btn").removeAttr("disabled", "false")
+    } else {
+        $(".popup-email__btn").attr("disabled", "true")
+    }
+})
+
+$("#popupName").on("input", function () {
+    if ($(this).val()) {
+        $(".popup-name__btn").removeAttr("disabled", "false")
+    } else {
+        $(".popup-name__btn").attr("disabled", "true")
     }
 })
 
 const HandLineList = document.querySelectorAll(".hand-elem");
 const LineList = document.querySelectorAll(".line-elem");
 
-function handView(imgList){
+function handView(imgList) {
     imgList.forEach((el, i) => {
         let time = i + "000"
         setTimeout(() => {
@@ -162,7 +170,7 @@ const snapButton = document.getElementById('snap');
 
 function openCamera() {
     // Запрашиваем доступ к камере
-    navigator.mediaDevices.getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({video: true})
         .then(stream => {
             video.autoplay = true;
             video.srcObject = stream;
@@ -213,11 +221,10 @@ snapButton.addEventListener('click', () => {
     stopCamera()
 });
 
-$("#openSnap").on("click", function (){
+$("#openSnap").on("click", function () {
     $(".popup-video").addClass("active");
     openCamera()
 })
-
 
 
 async function loadImageAsBase64(file) {
@@ -230,11 +237,11 @@ async function loadImageAsBase64(file) {
 }
 
 // Функция для отправки изображения на сервер
-async function sendImage(file , img) {
+async function sendImage(file, img) {
     let base64Image
-    if(img){
+    if (img) {
         base64Image = img;
-    }else{
+    } else {
         base64Image = await loadImageAsBase64(file);
     }
 
@@ -252,11 +259,11 @@ async function sendImage(file , img) {
     }
 
     const data = await response.json();
-    if(data.predictions.length){
+    if (data.predictions.length) {
         $(".popup-block").removeClass("active");
         showImg()
-    }else {
-       $(".popup-error").addClass("active");
+    } else {
+        $(".popup-error").addClass("active");
     }
 }
 
@@ -270,11 +277,11 @@ document.getElementById("fileInput").addEventListener("change", (event) => {
     }
 });
 
-$(".popup-cross, #errorBtn").on("click", function (){
+$(".popup-cross, #errorBtn").on("click", function () {
     $(".popup-block").removeClass("active");
 })
 
-$(".price-list").on("click" , function (){
+$(".price-list").on("click", function () {
     let selected = $("input[name='price']:checked").next().text()
     $(".preview-pay__total-sum").text(selected);
     $(".price-total-sale").text(selected);
@@ -282,7 +289,7 @@ $(".price-list").on("click" , function (){
 
 const timeBlock = document.querySelectorAll('.time-sale__content');
 
-timeBlock.forEach((el)=>{
+timeBlock.forEach((el) => {
     let time = el.textContent;
     let [minutes, seconds] = time.split(':').map(Number);
 
@@ -302,17 +309,17 @@ timeBlock.forEach((el)=>{
 
         let resultTimeString = "";
 
-        listLettersTime.forEach((el,i )=>{
-            if(i === 2){
+        listLettersTime.forEach((el, i) => {
+            if (i === 2) {
                 resultTimeString += `<span class="time-letter--no-bg">${el}</span>`
-            }else{
+            } else {
                 resultTimeString += `<span class="time-letter">${el}</span>`
             }
         })
 
         el.innerHTML = resultTimeString;
 
-        if ( minutes === 0 && seconds === 0) {
+        if (minutes === 0 && seconds === 0) {
             clearInterval(timer);
         }
     }
@@ -320,11 +327,23 @@ timeBlock.forEach((el)=>{
     const timer = setInterval(updateTime, 1000);
 })
 
-$(".form-email").on("submit" , function (){
+$(".form-email").on("submit", function () {
+    event.preventDefault();
+    $(".popup-email").removeClass("active");
+    $(".popup-name").addClass("active");
+})
+
+$(".popup-name__btn").on("click", function () {
     event.preventDefault();
     $(".popup-block , .email-slide").removeClass("active");
     $(".tab-15").addClass("active");
 })
+
+$(".race__el").on("click", function (){
+    $(".race__el").removeClass("active");
+    $(this).addClass("active");
+})
+
 
 function saveActiveTab(tabData) {
     localStorage.setItem('activeTab', tabData);
@@ -334,7 +353,7 @@ function loadActiveTab() {
     const activeTab = localStorage.getItem('activeTab');
     const imgUrl = localStorage.getItem('img');
 
-    $(".zodiac-img").attr("src" , imgUrl)
+    $(".zodiac-img").attr("src", imgUrl)
 
     if (activeTab) {
         // Отображение соответствующего таба
@@ -343,25 +362,45 @@ function loadActiveTab() {
         });
         const tabToActivate = document.querySelector(`[data-tab="${activeTab}"]`);
         if (tabToActivate) {
-            if(activeTab === "add-email"){
+            if (activeTab === "add-email") {
                 document.querySelector(`[data-tab="add-photo"]`).classList.add("active");
                 return
             }
 
             tabToActivate.classList.add('active');
-            if(Number(activeTab)){
-                bgProgressBar(num = activeTab )
-            }else{
-                bgProgressBar(num = 10 )
+            if (Number(activeTab)) {
+                bgProgressBar(num = activeTab)
+            } else {
+                bgProgressBar(num = 10)
             }
 
         }
-    }else{
+    } else {
         document.querySelector(`[data-tab="0"]`).classList.add('active');
     }
 }
 
+$.ajax({ url:"https://api.ipify.org/?format=json", success: function (data){
+    console.log(data)
+
+        const getYandexLocation = async (ip) => {
+            const response = await fetch(`https://api.yandex.com/geolocation?ip=${ip}`);
+            const data = await response.json();
+            return {
+                country: data.country,
+                city: data.city
+            };
+        };
+
 // Пример использования
-window.addEventListener('DOMContentLoaded', () => {
+        getYandexLocation(data).then(location => {
+            console.log(`Страна: ${location.country}, Город: ${location.city}`);
+        });
+
+
+    }
+})
+
+/*window.addEventListener('DOMContentLoaded', () => {
     loadActiveTab();
-});
+});*/

@@ -436,7 +436,7 @@ input:not(:placeholder-shown) + label {
   font-size: 12px;
 }
 
-input[type="email"]:not(:placeholder-shown){
+.popup-block input:not(:placeholder-shown){
   padding: 8px 12px 0;
 }
 
